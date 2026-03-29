@@ -1,0 +1,75 @@
+// contacts + WORKS_AT relationships
+// gdpr_consent is stored on each contact for GDPR compliance
+
+UNWIND [
+  {name:'Alice Johnson', email:'alice.j@acme.com', phone:'+44-20-7946-0001', title:'CTO', company:'Acme Corp'},
+  {name:'Bob Smith', email:'bob.s@acme.com', phone:'+44-20-7946-0002', title:'VP Engineering', company:'Acme Corp'},
+  {name:'Carol Davis', email:'carol.d@acme.com', phone:'+44-20-7946-0003', title:'Director IT', company:'Acme Corp'},
+  {name:'Dan Lee', email:'dan.l@globex.com', phone:'+44-20-7946-0004', title:'CEO', company:'Globex Industries'},
+  {name:'Eva Martinez', email:'eva.m@globex.com', phone:'+44-20-7946-0005', title:'CFO', company:'Globex Industries'},
+  {name:'Frank Wang', email:'frank.w@globex.com', phone:'+44-20-7946-0006', title:'COO', company:'Globex Industries'},
+  {name:'Grace Park', email:'grace.p@initech.com', phone:'+44-20-7946-0007', title:'CTO', company:'Initech Solutions'},
+  {name:'Henry Clarke', email:'henry.c@initech.com', phone:'+44-20-7946-0008', title:'Head of Sales', company:'Initech Solutions'},
+  {name:'Irene Foster', email:'irene.f@umbrellahc.com', phone:'+44-20-7946-0009', title:'CIO', company:'Umbrella Healthcare'},
+  {name:'Jack Turner', email:'jack.t@umbrellahc.com', phone:'+44-20-7946-0010', title:'CISO', company:'Umbrella Healthcare'},
+  {name:'Karen White', email:'karen.w@umbrellahc.com', phone:'+44-20-7946-0011', title:'VP Technology', company:'Umbrella Healthcare'},
+  {name:'Leo Harris', email:'leo.h@starkenergy.com', phone:'+44-20-7946-0012', title:'Operations Director', company:'Stark Energy'},
+  {name:'Maya Patel', email:'maya.p@starkenergy.com', phone:'+44-20-7946-0013', title:'IT Manager', company:'Stark Energy'},
+  {name:'Nathan Brooks', email:'nathan.b@waynefin.com', phone:'+44-20-7946-0014', title:'CTO', company:'Wayne Financial'},
+  {name:'Olivia Scott', email:'olivia.s@waynefin.com', phone:'+44-20-7946-0015', title:'Head of Technology', company:'Wayne Financial'},
+  {name:'Peter King', email:'peter.k@waynefin.com', phone:'+44-20-7946-0016', title:'CISO', company:'Wayne Financial'},
+  {name:'Quinn Adams', email:'quinn.a@piedpiper.io', phone:'+44-20-7946-0017', title:'CEO', company:'Pied Piper Tech'},
+  {name:'Rachel Green', email:'rachel.g@piedpiper.io', phone:'+44-20-7946-0018', title:'CTO', company:'Pied Piper Tech'},
+  {name:'Sam Wilson', email:'sam.w@hooli.com', phone:'+44-20-7946-0019', title:'VP Engineering', company:'Hooli Media'},
+  {name:'Tina Brown', email:'tina.b@hooli.com', phone:'+44-20-7946-0020', title:'Director IT', company:'Hooli Media'},
+  {name:'Uma Johansson', email:'uma.j@sterlingretail.com', phone:'+44-20-7946-0021', title:'CIO', company:'Sterling Retail'},
+  {name:'Victor Nash', email:'victor.n@sterlingretail.com', phone:'+44-20-7946-0022', title:'IT Director', company:'Sterling Retail'},
+  {name:'Wendy Cooper', email:'wendy.c@oceaniclog.com', phone:'+44-20-7946-0023', title:'CTO', company:'Oceanic Logistics'},
+  {name:'Xavier Rhodes', email:'xavier.r@oceaniclog.com', phone:'+44-20-7946-0024', title:'Head of Tech', company:'Oceanic Logistics'},
+  {name:'Yasmine Torres', email:'yasmine.t@phoenixpharma.com', phone:'+44-20-7946-0025', title:'CIO', company:'Phoenix Pharma'},
+  {name:'Zachary Bell', email:'zach.b@phoenixpharma.com', phone:'+44-20-7946-0026', title:'CISO', company:'Phoenix Pharma'},
+  {name:'Anna Wright', email:'anna.w@atlascon.com', phone:'+44-20-7946-0027', title:'IT Manager', company:'Atlas Construction'},
+  {name:'Brian Hall', email:'brian.h@atlascon.com', phone:'+44-20-7946-0028', title:'Director', company:'Atlas Construction'},
+  {name:'Christine Lopez', email:'christine.l@zenithedu.com', phone:'+44-20-7946-0029', title:'Head of IT', company:'Zenith Education'},
+  {name:'Derek Young', email:'derek.y@meridianins.com', phone:'+44-20-7946-0030', title:'CTO', company:'Meridian Insurance'},
+  {name:'Elena Sanchez', email:'elena.s@meridianins.com', phone:'+44-20-7946-0031', title:'IT Director', company:'Meridian Insurance'},
+  {name:'Fiona Mitchell', email:'fiona.m@quantumcl.com', phone:'+44-20-7946-0032', title:'CEO', company:'Quantum Computing Ltd'},
+  {name:'George Turner', email:'george.t@quantumcl.com', phone:'+44-20-7946-0033', title:'CTO', company:'Quantum Computing Ltd'},
+  {name:'Hannah Evans', email:'hannah.e@bluesky.com', phone:'+44-20-7946-0034', title:'CIO', company:'BlueSky Airlines'},
+  {name:'Ivan Petrov', email:'ivan.p@bluesky.com', phone:'+44-20-7946-0035', title:'VP Technology', company:'BlueSky Airlines'},
+  {name:'Julia Roberts', email:'julia.r@bluesky.com', phone:'+44-20-7946-0036', title:'CISO', company:'BlueSky Airlines'},
+  {name:'Kevin Zhang', email:'kevin.z@greenfieldagri.com', phone:'+44-20-7946-0037', title:'IT Manager', company:'GreenField Agriculture'},
+  {name:'Laura Kim', email:'laura.k@novatech.io', phone:'+44-20-7946-0038', title:'CTO', company:'NovaTech Systems'},
+  {name:'Marcus James', email:'marcus.j@novatech.io', phone:'+44-20-7946-0039', title:'Head of Sales', company:'NovaTech Systems'},
+  {name:'Natalie Cruz', email:'natalie.c@summitlegal.com', phone:'+44-20-7946-0040', title:'IT Director', company:'Summit Legal'},
+  {name:'Oscar Fleming', email:'oscar.f@cascadehotels.com', phone:'+44-20-7946-0041', title:'CIO', company:'Cascade Hospitality'},
+  {name:'Penny Morgan', email:'penny.m@cascadehotels.com', phone:'+44-20-7946-0042', title:'VP Technology', company:'Cascade Hospitality'},
+  {name:'Raj Sharma', email:'raj.s@vertexauto.com', phone:'+44-20-7946-0043', title:'CTO', company:'Vertex Automotive'},
+  {name:'Sara Nielsen', email:'sara.n@vertexauto.com', phone:'+44-20-7946-0044', title:'IT Director', company:'Vertex Automotive'},
+  {name:'Thomas Webb', email:'thomas.w@vertexauto.com', phone:'+44-20-7946-0045', title:'CISO', company:'Vertex Automotive'},
+  {name:'Uma Blackwood', email:'uma.b@prismanalytics.com', phone:'+44-20-7946-0046', title:'CEO', company:'Prism Analytics'},
+  {name:'Vince Coleman', email:'vince.c@prismanalytics.com', phone:'+44-20-7946-0047', title:'CTO', company:'Prism Analytics'},
+  {name:'Wendy Ho', email:'wendy.h@harborshipping.com', phone:'+44-20-7946-0048', title:'IT Manager', company:'Harbor Shipping'},
+  {name:'Xander Frost', email:'xander.f@harborshipping.com', phone:'+44-20-7946-0049', title:'Operations Director', company:'Harbor Shipping'},
+  {name:'Yara Stone', email:'yara.s@crestviewprop.com', phone:'+44-20-7946-0050', title:'CTO', company:'Crestview Properties'},
+  {name:'Zach Hardy', email:'zach.h@crestviewprop.com', phone:'+44-20-7946-0051', title:'IT Director', company:'Crestview Properties'},
+  {name:'Amy Chen', email:'amy.c@nexustelecom.com', phone:'+44-20-7946-0052', title:'CIO', company:'Nexus Telecom'},
+  {name:'Ben Foster', email:'ben.f@nexustelecom.com', phone:'+44-20-7946-0053', title:'VP Technology', company:'Nexus Telecom'},
+  {name:'Cara Diaz', email:'cara.d@nexustelecom.com', phone:'+44-20-7946-0054', title:'CISO', company:'Nexus Telecom'},
+  {name:'David Park', email:'david.p@acme.com', phone:'+44-20-7946-0055', title:'IT Security Lead', company:'Acme Corp'}
+] AS row
+CREATE (c:Contact {
+  name: row.name,
+  email: row.email,
+  phone: row.phone,
+  title: row.title,
+  gdpr_consent: true,
+  consent_date: date('2024-01-01'),
+  created_date: date('2024-03-01'),
+  source: 'import'
+})
+WITH c, row
+MATCH (co:Company {name: row.company})
+CREATE (c)-[:WORKS_AT {since: date('2020-06-01'), role: row.title, is_primary: true}]->(co);
+
+MATCH (c:Contact) RETURN count(c) AS TotalContacts;
