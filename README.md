@@ -10,7 +10,7 @@ George Maistrelis | Student ID: 2331873
 
 Graph database implementation of a B2B CRM system using Neo4j. The ERP system is the master of Services, the CRM holds reference copies and tracks per-customer activation state on the relationship.
 
-CRM data is naturally graph-shaped — contacts know contacts, companies own deals, services are subscribed per customer. Neo4j models this directly without needing join tables.
+CRM data is naturally graph-shaped, contacts know contacts, companies own deals, services are subscribed per customer. Neo4j models this directly without needing join tables.
 
 ## Data Model
 
@@ -65,7 +65,7 @@ Run the scripts in order in Neo4j Browser:
 | 04_deals.cypher | 35 Deals + ASSIGNED_TO + INVOLVED_IN |
 | 05_relationships_activities.cypher | USES_SERVICE, Activities, KNOWS |
 | 06_queries.cypher | 12 CRM queries |
-| 07_security_rbac.cypher | RBAC (requires Enterprise Edition) (theoretical, based on Neo4j docs - not deployable on Community Edition, so not tested) |
+| 07_security_rbac.cypher | RBAC (requires Enterprise Edition or Desktop Edition, based on Neo4j docs - not deployable on Community Edition on Docker, tested locally on Desktop Edition) |
 
 Verify data loaded correctly:
 ```cypher

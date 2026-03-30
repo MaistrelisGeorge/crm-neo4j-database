@@ -1,7 +1,7 @@
 // RBAC security setup
-// note: fine-grained role privileges need Neo4j Enterprise or Neo4j Desktop
+// note: role privileges need Neo4j Enterprise or Neo4j Desktop
 // Community Edition only supports basic username/password auth
-// for this assessment either use Neo4j Desktop (free dev licence) or document as design decision
+// Neo4j Desktop (free dev licence) was used for testing
 
 // create users
 CREATE USER crm_admin    SET PASSWORD 'Admin2026!'    SET PASSWORD CHANGE NOT REQUIRED;
@@ -24,7 +24,7 @@ GRANT WRITE ON GRAPH neo4j TO crm_admin_role;
 GRANT MATCH {*} ON GRAPH neo4j TO crm_manager_role;
 GRANT CREATE ON GRAPH neo4j NODES Contact, Deal, Activity TO crm_manager_role;
 GRANT SET PROPERTY {*} ON GRAPH neo4j NODES Contact, Deal, Activity TO crm_manager_role;
-GRANT CREATE ON GRAPH neo4j RELATIONSHIPS TO crm_manager_role;
+GRANT CREATE ON GRAPH neo4j RELATIONSHIP * TO crm_manager_role;
 DENY SET PROPERTY {*} ON GRAPH neo4j NODES Service TO crm_manager_role;
 DENY DELETE ON GRAPH neo4j TO crm_manager_role;
 
