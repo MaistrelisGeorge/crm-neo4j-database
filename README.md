@@ -64,7 +64,7 @@ Run the scripts in order in Neo4j Browser:
 | 03_contacts.cypher | 55 Contacts + WORKS_AT |
 | 04_deals.cypher | 35 Deals + ASSIGNED_TO + INVOLVED_IN |
 | 05_relationships_activities.cypher | USES_SERVICE, Activities, KNOWS |
-| 06_queries.cypher | 12 CRM queries |
+| 06_queries.cypher | 13 CRM queries |
 | 07_security_rbac.cypher | RBAC (requires Enterprise Edition or Desktop Edition, based on Neo4j docs - not deployable on Community Edition on Docker, tested locally on Desktop Edition) |
 
 Verify data loaded correctly:

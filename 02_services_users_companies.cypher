@@ -19,6 +19,25 @@ UNWIND [
 CREATE (s:Service)
 SET s = row, s.last_synced = datetime();
 
+// add ERP supplier info to service nodes
+MATCH (s:Service)
+SET s.supplier_name = CASE s.erp_service_id
+  WHEN 'ERP-SVC-001' THEN 'SalesCloud Ltd'
+  WHEN 'ERP-SVC-002' THEN 'DataViz Corp'
+  WHEN 'ERP-SVC-003' THEN 'MarketPro Inc'
+  WHEN 'ERP-SVC-004' THEN 'SupportDesk Ltd'
+  WHEN 'ERP-SVC-005' THEN 'CommerceHub Ltd'
+  WHEN 'ERP-SVC-006' THEN 'DataViz Corp'
+  WHEN 'ERP-SVC-007' THEN 'SecureNet Ltd'
+  WHEN 'ERP-SVC-008' THEN 'CloudStore Inc'
+  WHEN 'ERP-SVC-009' THEN 'IntegrationHub Ltd'
+  WHEN 'ERP-SVC-010' THEN 'DocFlow Ltd'
+  WHEN 'ERP-SVC-011' THEN 'LegacyBridge Ltd'
+  WHEN 'ERP-SVC-012' THEN 'AILabs Corp'
+  END,
+s.product_status = s.status,
+s.last_erp_sync = datetime();
+
 MATCH (s:Service) RETURN count(s) AS TotalServices;
 
 

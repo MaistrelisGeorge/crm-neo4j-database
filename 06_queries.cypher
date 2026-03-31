@@ -1,4 +1,4 @@
-// 12 CRM queries - run each one separately in Neo4j Browser
+// 13 CRM queries - run each one separately in Neo4j Browser
 
 
 // Q1 - all contacts at a company
@@ -121,3 +121,13 @@ RETURN p;
 CALL apoc.meta.stats()
 YIELD labels, relTypesCount, propertyKeyCount
 RETURN labels, relTypesCount, propertyKeyCount;
+
+// Q13 - ERP service catalog with supplier info
+MATCH (s:Service)
+RETURN s.name AS Service,
+       s.erp_service_id AS ErpId,
+       s.supplier_name AS Supplier,
+       s.product_status AS Status,
+       s.monthly_cost AS MonthlyCost,
+       s.last_erp_sync AS LastSync
+ORDER BY s.category;
